@@ -12,4 +12,7 @@ dotnet run
 
 see http://localhost:5000/client
 
-To delete client tasks, click the context menu on the task record on the second table
+1) To delete client tasks, click the context menu on the task record on the second table
+
+2) TestWork2\src\AngularWebpackVisualStudio\ MyDb.db  <- delete this file for seed new data
+When you start the program, create a new instance of the database
