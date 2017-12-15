@@ -10,7 +10,7 @@ dotnet restore
 
 dotnet run
 
-see http://localhost:5000/client
+see http://localhost:5000/
 
 1) To delete client tasks, click the context menu on the task record on the second table
 
