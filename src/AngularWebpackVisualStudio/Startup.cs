@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Angular2WebpackVisualStudio.Repositories.Things;
 using Angular2WebpackVisualStudio.Models;
 using AngularWebpackVisualStudio.Services;
 using AngularWebpackVisualStudio.Repositories;
@@ -47,7 +46,6 @@ namespace Angular2WebpackVisualStudio
 
             // Add framework services.            
             services.AddEntityFrameworkSqlite().AddDbContext<MyContext>();
-            services.AddSingleton<IThingsRepository, ThingsRepository>();            
             services.AddScoped<ClientService>();
             services.AddScoped<TaskClientService>();
 
