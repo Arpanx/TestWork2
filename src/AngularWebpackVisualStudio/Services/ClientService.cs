@@ -20,14 +20,14 @@ namespace AngularWebpackVisualStudio.Services
 
         public ListClientsDTO GetClientAll()
         {
-                ListClientsDTO listClientsDTO = new ListClientsDTO();
-                List<Client> listClient = _dbContext.Clients.ToList();
-                List<String> listDistinctCity = _dbContext.Clients.Select(m => m.City).Distinct().ToList();
-                listClientsDTO.ListClients = listClient;
-                listClientsDTO.ListDistinctCity = listDistinctCity;
-                listClientsDTO.TotalCount = _dbContext.Clients.Count();
+            ListClientsDTO listClientsDTO = new ListClientsDTO();
+            List<Client> listClient = _dbContext.Clients.ToList();
+            List<String> listDistinctCity = _dbContext.Clients.Select(m => m.City).Distinct().ToList();
+            listClientsDTO.ListClients = listClient;
+            listClientsDTO.ListDistinctCity = listDistinctCity;
+            listClientsDTO.TotalCount = _dbContext.Clients.Count();
 
-                return listClientsDTO;
+            return listClientsDTO;
         }
 
         private bool CheckTableExists()
