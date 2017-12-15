@@ -18,7 +18,7 @@ namespace AngularWebpackVisualStudio.Services
             _dbContext = dbContext;
         }
 
-        public ListTaskClientsDTO GetClientAll()
+        public ListTaskClientsDTO GetTaskClientAll()
         {
             ListTaskClientsDTO listTaskClientsDTO = new ListTaskClientsDTO();
             
@@ -39,7 +39,7 @@ namespace AngularWebpackVisualStudio.Services
             return listTaskClientsDTO;
         }
 
-        public ListTaskClientsDTO GetClientById(int Id)
+        public ListTaskClientsDTO GetTaskClientById(int Id)
         {
             ListTaskClientsDTO listTaskClientsDTO = new ListTaskClientsDTO();
 
@@ -66,8 +66,7 @@ namespace AngularWebpackVisualStudio.Services
         {
             TaskClient deptDelete = _dbContext.TaskClients.Find(id);
             _dbContext.Entry(deptDelete).State = EntityState.Deleted;
-            _dbContext.SaveChanges();
-            
+            _dbContext.SaveChanges();            
         }
     }
 }

@@ -25,7 +25,7 @@ namespace AngularWebpackVisualStudio.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            ListTaskClientsDTO listTaskClientsDTO = _taskClientService.GetClientAll();           
+            ListTaskClientsDTO listTaskClientsDTO = _taskClientService.GetTaskClientAll();           
 
             return Json(Ok(listTaskClientsDTO));
         }
@@ -37,7 +37,7 @@ namespace AngularWebpackVisualStudio.Controllers
             {
                 id = 1;
             }
-            ListTaskClientsDTO listTaskClientsDTO = _taskClientService.GetClientById(id);
+            ListTaskClientsDTO listTaskClientsDTO = _taskClientService.GetTaskClientById(id);
 
             return Json(Ok(listTaskClientsDTO));
         }
