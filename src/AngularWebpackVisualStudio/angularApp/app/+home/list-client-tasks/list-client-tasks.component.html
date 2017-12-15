@@ -1,0 +1,114 @@
+<div class="example-container mat-elevation-z8">
+  <div class="example-loading-shade" *ngIf="isLoadingResults || isRateLimitReached">
+    <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+    <div class="example-rate-limit-reached" *ngIf="isRateLimitReached">
+        Server response time is out. Try refreshing the page
+    </div>
+  </div>
+  <!--
+    <div class="example-header">
+      <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-select placeholder="city">
+          <mat-option (onSelectionChange)="onSelectedCity($event, city)">None</mat-option>
+          <mat-option *ngFor="let city of cityPredicate" [value]="city" (onSelectionChange)="onSelectedCity($event, city)">
+            {{ city }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    -->
+  <!-- your whole html is wrapped in a div so anywhere you click you disable contextmenu,
+also the div is responsible for suppressing the default browser contextmenu -->
+  <div class="example-container mat-elevation-z8 demo-table-container demo-mat-table-example mat-elevation-z4 mat-table-selectable mytop">
+    <mat-table #table [dataSource]="dataSource" class="example-table" matSort matSortActive="firstName" matSortDisableClear matSortDirection="asc">
+
+      <!--- Note that these columns can be defined in any order.
+                  The actual rendered columns are set as a property on the row definition" -->
+
+      <!-- Checkbox Column 
+        <ng-container matColumnDef="select">
+          <mat-header-cell *matHeaderCellDef>
+            <mat-checkbox (change)="$event ? masterToggle() : null"
+                          [checked]="selection.hasValue() && isAllSelected()"
+                          [indeterminate]="selection.hasValue() && !isAllSelected()">
+            </mat-checkbox>
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row">
+            <mat-checkbox (click)="$event.stopPropagation()"
+                          (change)="$event ? selection.toggle(row) : null"
+                          [checked]="selection.isSelected(row)">
+            </mat-checkbox>
+          </mat-cell>
+        </ng-container>
+        -->
+
+      <!-- Number Column -->
+      <ng-container matColumnDef="taskName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Задача</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{ row.taskName }}</mat-cell>
+      </ng-container>
+
+      <!-- Title Column -->
+      <ng-container matColumnDef="description">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Описание</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{ row.description }}</mat-cell>
+      </ng-container>
+
+
+      <!-- State Column -->
+      <ng-container matColumnDef="startTime">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Начало</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{ row.startTime | date: 'short' }}</mat-cell>
+      </ng-container>
+
+      <!-- State Column -->
+      <ng-container matColumnDef="endTime">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Завершение</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{ row.endTime | date: 'short' }}</mat-cell>
+      </ng-container>
+
+      <!-- State Column -->
+      <ng-container matColumnDef="address">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Адрес</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{ row.address }}</mat-cell>
+      </ng-container>
+
+      <!-- Created Column 
+            <ng-container matColumnDef="created">
+              <mat-header-cell *matHeaderCellDef
+                               mat-sort-header
+                               disableClear="true">
+                Created
+              </mat-header-cell>
+              <mat-cell *matCellDef="let row">{{ row.created_at | date }}</mat-cell>
+            </ng-container>
+        -->
+      <!--
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        -->
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)" (contextmenu)="onrightClick($event, row)">
+        <!-- (contextmenu)="openContextMenu($event)" -->
+      </mat-row>
+    </mat-table>
+  </div>
+  <mat-paginator [length]="resultsLength" [pageSize]="30">
+  </mat-paginator>
+</div>
+
+
+<div (click)="disableContextMenu()" oncontextmenu="return false;">
+  <div [hidden]="!contextmenu" >
+      <app-contextmenu [x]="contextmenuX" [y]="contextmenuY"
+       [parentSubject]="parentSubject"
+       (change)="ChangeNeedHideContextMenu($event)"
+       (deleteTask)="deleteTaskById($event)"
+       > 
+      </app-contextmenu>
+  </div>
+</div>
+

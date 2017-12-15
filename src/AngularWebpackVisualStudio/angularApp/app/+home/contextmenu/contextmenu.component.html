@@ -1,0 +1,13 @@
+<div class="contextmenu" [ngStyle]="{'left.px': x, 'top.px': y}">
+<button [matMenuTriggerFor]="menu">.</button>
+<mat-menu #menu="matMenu" (closed)="sendEventToParentForHideMenu($event)" >
+    <button mat-menu-item (click)="deleteCurrentTask()">
+        <span>Delete?</span>
+    </button>
+    <button mat-menu-item>
+        <span>Cancel</span>
+    </button>
+<!-- (click)="deleteСhoice($event)" -->
+</mat-menu>
+<!-- <mat-icon svgIcon="thumbs-up"></mat-icon> -->
+</div>
