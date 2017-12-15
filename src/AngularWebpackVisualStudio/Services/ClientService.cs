@@ -30,7 +30,7 @@ namespace AngularWebpackVisualStudio.Services
                 return listClientsDTO;
         }
 
-        bool CheckTableExists()
+        private bool CheckTableExists()
         {
             try
             {
@@ -41,11 +41,6 @@ namespace AngularWebpackVisualStudio.Services
             {
                 return false;
             }
-        }
-
-        public void SeedDb()
-        {
-            
         }
     }
 }

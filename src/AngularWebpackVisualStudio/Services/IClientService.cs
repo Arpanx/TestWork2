@@ -9,6 +9,5 @@ namespace AngularWebpackVisualStudio.Services
     public interface IClientService
     {
         List<Client> GetClientAll();
-        void SeedDb();
     }
 }
