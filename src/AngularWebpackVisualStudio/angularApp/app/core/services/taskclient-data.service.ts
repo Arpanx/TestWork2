@@ -1,3 +1,4 @@
+import { AionysApi } from '../../+client/list-client-tasks/list-client-tasks.component';
 import 'rxjs/add/operator/map';
 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -20,6 +21,12 @@ export class TaskClientService {
         this.headers = new HttpHeaders();
         this.headers = this.headers.set('Content-Type', 'application/json');
         this.headers = this.headers.set('Accept', 'application/json');
+    }
+
+
+    getBySortByOrderByPageByIdClient(sort: string, order: string, page: number, idClient: number): Observable<AionysApi> {
+        console.log (sort); console.log (order); console.log (page);
+            return this.http.get<AionysApi>(this.actionUrl + `${idClient}`, { headers: this.headers });
     }
 
     getAll(): Observable<TaskClient[]> {

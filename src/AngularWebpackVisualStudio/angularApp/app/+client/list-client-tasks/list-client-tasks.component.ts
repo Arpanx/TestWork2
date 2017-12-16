@@ -1,10 +1,9 @@
 import { TaskClientService } from '../../core/services/taskclient-data.service';
 import { Subject } from 'rxjs/Rx';
 import { Component, AfterViewInit, ViewChild, EventEmitter, Output } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { SelectionModel } from '@angular/cdk/collections';
-import { Observable } from 'rxjs/Observable';
+// import { Observable } from 'rxjs/Observable';
 import { merge } from 'rxjs/observable/merge';
 import { of as observableOf } from 'rxjs/observable/of';
 import { catchError } from 'rxjs/operators/catchError';
@@ -22,7 +21,6 @@ import { MessageService } from '../services/index';
 
 export class ListClientTasksComponent implements AfterViewInit {
     displayedColumns = [/* 'select',  'clientid', */ 'taskName', 'description', 'startTime', 'endTime', 'address'];
-    exampleDatabase: ClientsHttpDao | null;
     dataSource = new MatTableDataSource<TaskClients>();
     resultsLength = 0;
     isLoadingResults = false;
@@ -39,10 +37,9 @@ export class ListClientTasksComponent implements AfterViewInit {
 
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
-    childTitle = 'This text is passed to child';
     parentSubject: Subject<any> = new Subject();
 
-    constructor(private http: HttpClient,
+    constructor(
         private messageService: MessageService,
         private taskClientService: TaskClientService,
         ) {
@@ -80,7 +77,6 @@ export class ListClientTasksComponent implements AfterViewInit {
       }
 
     deleteTaskById() { // event: any
-        // console.log(event);
         this.taskClientService.delete(this.rowCurrent).subscribe(
             res => {
               console.log(res);
@@ -127,7 +123,6 @@ export class ListClientTasksComponent implements AfterViewInit {
     }
 
     ngAfterViewInit() {
-        this.exampleDatabase = new ClientsHttpDao(this.http);
         // If the user changes the sort order, reset back to the first page.
         this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
         merge(this.sort.sortChange, this.paginator.page, this.userUpdated)
@@ -135,7 +130,7 @@ export class ListClientTasksComponent implements AfterViewInit {
             startWith({}),
             switchMap(() => {
                 this.isLoadingResults = true;
-                return this.exampleDatabase!.getClients(
+                return this.taskClientService!.getBySortByOrderByPageByIdClient(
                     this.sort.active, this.sort.direction, this.paginator.pageIndex, this.idClient);
             }),
             map(data => {
@@ -170,20 +165,4 @@ export interface TaskClients {
     endTime: string;
     address: string;
     clientid: string;
-}
-
-/** An example database that the data source uses to retrieve data for the table. */
-export class ClientsHttpDao {
-    constructor(private http: HttpClient) { }
-
-    getClients(sort: string, order: string, page: number, idClient: number): Observable<AionysApi> {
-        const href = 'http://localhost:5000/api/taskclient';
-        let requestUrl =
-            `${href}?q=repo:angular/material2&sort=${sort}&order=${order}&page=${page + 1}`;
-        requestUrl =
-            `${href}/${idClient}`;
-        const getTaskClient = this.http.get<AionysApi>(requestUrl);
-
-        return getTaskClient;
-    }
 }
