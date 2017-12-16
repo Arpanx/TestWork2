@@ -12,11 +12,13 @@ https://github.com/sass/node-sass/issues/1579
 Can't explain why the install file doesn't always get ran on each build. So my build script looks like this:
 
 src\AngularWebpackVisualStudio\node_modules\node-sass\vendor\win32-x64-48\binding.node  <- delete this file if exsist
+
 // npm update
 // npm install
-cd ...node_modules/node-sass/scripts/
-node install.js
-npm rebuild node-sass
+
+1) cd ...node_modules/node-sass/scripts/
+2) node install.js
+3) npm rebuild node-sass
 
 
 npm run build-dev
