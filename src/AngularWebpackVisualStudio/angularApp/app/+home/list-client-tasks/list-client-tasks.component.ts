@@ -73,15 +73,14 @@ export class ListClientTasksComponent implements AfterViewInit {
       }
 
     EmitEventForGetClientTaskByIdClient(idClient: number) {
-        // console.log(message.message.id);
         if (idClient > 0) {
             this.idClient = idClient;
             this.userUpdated.emit(0);
         }
       }
 
-    deleteTaskById(event: any) { // event: any
-        console.log(event);
+    deleteTaskById() { // event: any
+        // console.log(event);
         this.taskClientService.delete(this.rowCurrent).subscribe(
             res => {
               console.log(res);
@@ -94,7 +93,6 @@ export class ListClientTasksComponent implements AfterViewInit {
       }
 
       ChangeNeedHideContextMenu() { // event: any
-        // console.log(event);
         this.contextmenu = false;
       }
 
@@ -112,16 +110,13 @@ export class ListClientTasksComponent implements AfterViewInit {
             this.dataSource.data.forEach(row => this.selection.select(row));
     }
 
-    onSelectedCity(evt: MatOptionSelectionChange, food: any) {
-        // this.selectedJobRoles.push(jobRole);
-        // console.log('jobRole.id=' + food + ' (' + food.role + '). is-selected?=' + evt.source.selected);
+    onSelectedCity(evt: MatOptionSelectionChange, city: any) {
         if (evt.source.selected) {
-            // Do something with the new selected option here!!!!
-            console.log(food);
-            if (isNaN(food)) {
+            console.log(city);
+            if (isNaN(city)) {
                 this.applyFilter('');
             }
-            this.applyFilter(food);
+            this.applyFilter(city);
         }
     }
 
@@ -153,7 +148,7 @@ export class ListClientTasksComponent implements AfterViewInit {
             }),
             catchError(() => {
                 this.isLoadingResults = false;
-                // Catch if the GitHub API has reached its rate limit. Return empty data.
+                // Catch if the Server API has reached its rate limit. Return empty data.
                 this.isRateLimitReached = true;
 
                 return observableOf([]);
@@ -188,8 +183,6 @@ export class ExampleHttpDao {
         requestUrl =
             `${href}/${idClient}`;
         const getTaskClient = this.http.get<AionysApi>(requestUrl);
-        // const del = this.http.delete<AionysApi>(requestUrl);
-        // console.log(del);
         return getTaskClient;
     }
 }

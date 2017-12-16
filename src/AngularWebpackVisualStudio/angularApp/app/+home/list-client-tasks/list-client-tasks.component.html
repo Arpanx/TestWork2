@@ -92,14 +92,12 @@ also the div is responsible for suppressing the default browser contextmenu -->
         -->
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)" (contextmenu)="onrightClick($event, row)">
-        <!-- (contextmenu)="openContextMenu($event)" -->
       </mat-row>
     </mat-table>
   </div>
   <mat-paginator [length]="resultsLength" [pageSize]="30">
   </mat-paginator>
 </div>
-
 
 <div (click)="disableContextMenu()" oncontextmenu="return false;">
   <div [hidden]="!contextmenu" >
