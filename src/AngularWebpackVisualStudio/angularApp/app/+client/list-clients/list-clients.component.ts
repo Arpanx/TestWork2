@@ -11,7 +11,7 @@ import { switchMap } from 'rxjs/operators/switchMap';
 import { MatOptionSelectionChange } from '@angular/material';
 import { MessageService } from '../services/index';
 import { ClientService } from '../../core/services/client-data.service';
-import { Client } from '../../models/iclient';
+import { Client } from '../../models/client';
 
 @Component({
     selector: 'app-list-clients',
