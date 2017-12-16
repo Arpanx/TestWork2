@@ -14,9 +14,9 @@ namespace AngularWebpackVisualStudio.Controllers
     [Route("api/[controller]")]
     public class TaskClientController : Microsoft.AspNetCore.Mvc.Controller
     {
-        private readonly TaskClientService _taskClientService;
+        private readonly ITaskClientService _taskClientService;
 
-        public TaskClientController(TaskClientService taskClientService)
+        public TaskClientController(ITaskClientService taskClientService)
         {
             _taskClientService = taskClientService;
         }

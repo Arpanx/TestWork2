@@ -1,4 +1,5 @@
 ﻿using AngularWebpackVisualStudio.Models;
+using AngularWebpackVisualStudio.Models.MyType;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,6 @@ namespace AngularWebpackVisualStudio.Services
 {
     public interface IClientService
     {
-        List<Client> GetClientAll();
+        ListClientsDTO GetClientAll();
     }
 }

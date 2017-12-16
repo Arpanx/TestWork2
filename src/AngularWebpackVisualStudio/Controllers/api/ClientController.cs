@@ -16,9 +16,9 @@ namespace Angular2WebpackVisualStudio.Controller
     [Route("api/[controller]")]
     public class ClientController : Microsoft.AspNetCore.Mvc.Controller
     {        
-        private readonly ClientService _clientService;
+        private readonly IClientService _clientService;
 
-        public ClientController(ClientService clientService)
+        public ClientController(IClientService clientService)
         {
             _clientService = clientService;
         }

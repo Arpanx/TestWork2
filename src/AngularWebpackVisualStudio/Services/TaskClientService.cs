@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace AngularWebpackVisualStudio.Services
 {    
-    public class TaskClientService
+    public class TaskClientService : ITaskClientService
     {
         private MyContext _dbContext;
 

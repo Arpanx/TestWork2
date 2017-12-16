@@ -45,8 +45,8 @@ namespace Angular2WebpackVisualStudio
 
             // Add framework services.            
             services.AddEntityFrameworkSqlite().AddDbContext<MyContext>();
-            services.AddScoped<ClientService>();
-            services.AddScoped<TaskClientService>();
+            services.AddScoped<IClientService, ClientService>();
+            services.AddScoped<ITaskClientService, TaskClientService>();
 
             services.AddMvc();
         }
