@@ -1,4 +1,5 @@
-﻿import 'rxjs/add/operator/map';
+﻿import { AionysApi } from '../../+client/list-clients/list-clients.component';
+import 'rxjs/add/operator/map';
 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -20,6 +21,12 @@ export class ClientService {
         this.headers = new HttpHeaders();
         this.headers = this.headers.set('Content-Type', 'application/json');
         this.headers = this.headers.set('Accept', 'application/json');
+    }
+
+    getClientAll(sort: string, order: string, page: number): Observable<AionysApi> {
+        console.log(sort);
+        console.log(order);
+        return this.http.get<AionysApi>(this.actionUrl + `${page + 1}`, { headers: this.headers });
     }
 
     getAll(): Observable<Client[]> {

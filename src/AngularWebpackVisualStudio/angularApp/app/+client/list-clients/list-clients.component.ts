@@ -1,5 +1,4 @@
 import { AfterViewInit, Component, EventEmitter, ViewChild, Output } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { SelectionModel } from '@angular/cdk/collections';
 import { Observable } from 'rxjs/Observable';
@@ -11,6 +10,7 @@ import { startWith } from 'rxjs/operators/startWith';
 import { switchMap } from 'rxjs/operators/switchMap';
 import { MatOptionSelectionChange } from '@angular/material';
 import { MessageService } from '../services/index';
+import { ClientService } from '../../core/services/client-data.service';
 
 @Component({
     selector: 'app-list-clients',
@@ -19,7 +19,6 @@ import { MessageService } from '../services/index';
 })
 export class ListClientsComponent implements AfterViewInit {
     displayedColumns = [/* 'select', */ 'firstName', 'lastName', 'address', 'phoneNumbers'];
-    exampleDatabase: ClientHttpDao | null;
     dataSource = new MatTableDataSource<Client>();
 
     resultsLength = 0;
@@ -33,8 +32,9 @@ export class ListClientsComponent implements AfterViewInit {
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
 
-    constructor(private http: HttpClient,
-        private messageService: MessageService) {
+    constructor(private messageService: MessageService,
+        private clientService: ClientService
+    ) {
     }
 
     sendMessage(row: any) {
@@ -72,7 +72,6 @@ export class ListClientsComponent implements AfterViewInit {
     }
 
     ngAfterViewInit() {
-        this.exampleDatabase = new ClientHttpDao(this.http);
         // If the user changes the sort order, reset back to the first page.
         this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
 
@@ -81,7 +80,7 @@ export class ListClientsComponent implements AfterViewInit {
             startWith({}),
             switchMap(() => {
                 this.isLoadingResults = true;
-                return this.exampleDatabase!.getClientAll(
+                return this.clientService!.getClientAll(
                     this.sort.active, this.sort.direction, this.paginator.pageIndex);
             }),
             map(data => {
@@ -90,6 +89,7 @@ export class ListClientsComponent implements AfterViewInit {
                 this.isRateLimitReached = false;
                 this.resultsLength = data.value.totalCount;
                 this.cityPredicate = data.value.listDistinctCity;
+
                 return data.value.listClients;
             }),
             catchError(() => {
@@ -116,16 +116,4 @@ export interface Client {
     city: string;
 }
 
-export class ClientHttpDao {
-    constructor(private http: HttpClient) { }
-
-    getClientAll(sort: string, order: string, page: number): Observable<AionysApi> {
-        const href = 'http://localhost:5000/api/client';
-        let requestUrl = `${href}=${sort}&order=${order}&page=${page + 1}`;
-        requestUrl = `${href}/${page + 1}`;
-        const res = this.http.get<AionysApi>(requestUrl);
-
-        return res;
-    }
-}
 

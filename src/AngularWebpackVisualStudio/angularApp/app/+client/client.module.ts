@@ -19,6 +19,7 @@ import { MessageService } from './services/index';
 import { ListClientTasksComponent } from './list-client-tasks/list-client-tasks.component';
 import { ContextmenuComponent } from './contextmenu/contextmenu.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { ClientService } from '../core/services/client-data.service';
 
 @NgModule({
     imports: [
@@ -60,6 +61,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     providers: [
         MessageService,
         TaskClientService,
+        ClientService,
       ],
     exports: [
         ListClientTasksComponent,
