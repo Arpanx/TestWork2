@@ -33,10 +33,7 @@ namespace AngularWebpackVisualStudio.Controllers
         // GET api/taskclient/5
         [HttpGet("{id}")]
         public IActionResult Get(int id)
-        {   if (id == 0)
-            {
-                id = 1;
-            }
+        {  
             ListTaskClientsDTO listTaskClientsDTO = _taskClientService.GetTaskClientById(id);
 
             return Json(Ok(listTaskClientsDTO));
