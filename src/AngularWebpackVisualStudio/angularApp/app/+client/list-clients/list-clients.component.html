@@ -13,7 +13,7 @@
 
     <mat-form-field class="myright">
       <mat-select placeholder="city">
-        <mat-option (onSelectionChange)="onSelectedCity($event, city)">None</mat-option>
+        <mat-option (onSelectionChange)="onSelectedCity($event, 'none')">None</mat-option>
         <mat-option *ngFor="let city of cityPredicate" [value]="city" (onSelectionChange)="onSelectedCity($event, city)">
           {{ city }}
         </mat-option>

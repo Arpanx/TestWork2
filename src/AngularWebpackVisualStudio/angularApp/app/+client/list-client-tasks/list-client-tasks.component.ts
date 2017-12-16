@@ -77,7 +77,8 @@ export class ListClientTasksComponent implements AfterViewInit {
         }
       }
 
-    deleteTaskById() { // event: any
+    deleteTaskById(event: any) { // event: any
+        console.log(event);
         this.taskClientService.delete(this.rowCurrent).subscribe(
             res => {
               console.log(res);
@@ -89,7 +90,8 @@ export class ListClientTasksComponent implements AfterViewInit {
           );
       }
 
-      ChangeNeedHideContextMenu() { // event: any
+      ChangeNeedHideContextMenu(event: any) { // event: any
+        console.log(event);
         this.contextmenu = false;
       }
 
