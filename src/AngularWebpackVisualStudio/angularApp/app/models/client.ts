@@ -6,3 +6,4 @@ export class Client {
     public phonenumbers: string;
     public city: string;
 }
+

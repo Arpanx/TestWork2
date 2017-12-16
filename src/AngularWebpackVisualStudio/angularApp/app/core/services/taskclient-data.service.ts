@@ -1,4 +1,3 @@
-import { AionysApi } from '../../+client/list-client-tasks/list-client-tasks.component';
 import 'rxjs/add/operator/map';
 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -29,26 +28,31 @@ export class TaskClientService {
             return this.http.get<AionysApi>(this.actionUrl + `${idClient}`, { headers: this.headers });
     }
 
-    getAll(): Observable<TaskClient[]> {
-        return this.http.get<TaskClient[]>(this.actionUrl, { headers: this.headers });
+    getAll(): Observable<AionysApi[]> {
+        return this.http.get<AionysApi[]>(this.actionUrl, { headers: this.headers });
     }
 
-    getSingle(id: number): Observable<TaskClient> {
-        return this.http.get<TaskClient>(this.actionUrl + id, { headers: this.headers });
+    getSingle(id: number): Observable<AionysApi> {
+        return this.http.get<AionysApi>(this.actionUrl + id, { headers: this.headers });
     }
 
-    add(thingToAdd: TaskClient): Observable<TaskClient> {
+    add(thingToAdd: TaskClient): Observable<AionysApi> {
         const toAdd = JSON.stringify({ name: thingToAdd });
 
-        return this.http.post<TaskClient>(this.actionUrl, toAdd, { headers: this.headers });
+        return this.http.post<AionysApi>(this.actionUrl, toAdd, { headers: this.headers });
     }
 
-    update(id: number, itemToUpdate: any): Observable<TaskClient> {
+    update(id: number, itemToUpdate: any): Observable<AionysApi> {
         return this.http
-            .put<TaskClient>(this.actionUrl + id, JSON.stringify(itemToUpdate), { headers: this.headers });
+            .put<AionysApi>(this.actionUrl + id, JSON.stringify(itemToUpdate), { headers: this.headers });
     }
 
     delete(id: number): Observable<any> {
         return this.http.delete<any>(this.actionUrl + id, { headers: this.headers });
     }
 }
+
+export interface AionysApi {
+    value: { totalCount: number, listTaskClients: TaskClient[] }
+}
+

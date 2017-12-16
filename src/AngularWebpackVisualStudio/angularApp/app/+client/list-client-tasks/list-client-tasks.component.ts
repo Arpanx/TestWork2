@@ -12,6 +12,7 @@ import { startWith } from 'rxjs/operators/startWith';
 import { switchMap } from 'rxjs/operators/switchMap';
 import { MatOptionSelectionChange } from '@angular/material';
 import { MessageService } from '../services/index';
+import { TaskClient } from '../../models/taskclient';
 
 @Component({
     selector: 'app-list-client-tasks',
@@ -21,11 +22,11 @@ import { MessageService } from '../services/index';
 
 export class ListClientTasksComponent implements AfterViewInit {
     displayedColumns = [/* 'select',  'clientid', */ 'taskName', 'description', 'startTime', 'endTime', 'address'];
-    dataSource = new MatTableDataSource<TaskClients>();
+    dataSource = new MatTableDataSource<TaskClient>();
     resultsLength = 0;
     isLoadingResults = false;
     isRateLimitReached = false;
-    selection = new SelectionModel<TaskClients>(true, []);
+    selection = new SelectionModel<TaskClient>(true, []);
     idClient = 0;
     userUpdated: EventEmitter<number> = new EventEmitter<number>();
     contextmenu = false;
@@ -152,17 +153,3 @@ export class ListClientTasksComponent implements AfterViewInit {
     }
 }
 
-export interface AionysApi {
-    value: { totalCount: number, listTaskClients: TaskClients[] }
-}
-
-export interface TaskClients {
-    select: boolean;
-    id: string;
-    taskName: string;
-    description: string;
-    startTime: string;
-    endTime: string;
-    address: string;
-    clientid: string;
-}

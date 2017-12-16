@@ -11,6 +11,7 @@ import { switchMap } from 'rxjs/operators/switchMap';
 import { MatOptionSelectionChange } from '@angular/material';
 import { MessageService } from '../services/index';
 import { ClientService } from '../../core/services/client-data.service';
+import { Client } from '../../models/iclient';
 
 @Component({
     selector: 'app-list-clients',
@@ -106,14 +107,5 @@ export interface AionysApi {
     value: { totalCount: number, listDistinctCity: string[], listClients: Client[] }
 }
 
-export interface Client {
-    select: boolean;
-    id: string;
-    firstName: string;
-    lastName: string;
-    address: string;
-    phoneNumbers: string;
-    city: string;
-}
 
 
