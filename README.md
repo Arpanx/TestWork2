@@ -1,10 +1,13 @@
 # TestWork2  Pisetskij Aleksandr
 
+Demo Video  https://www.youtube.com/watch?v=sNj5kk4D4bE
+
+
 cd ~TestWork2\src\AngularWebpackVisualStudio
 
 npm i 
 
-# Problem witsh SASS Build -> Solition
+Problem witsh SASS Build -> Solition
 https://github.com/sass/node-sass/issues/1579
 Can't explain why the install file doesn't always get ran on each build. So my build script looks like this:
 

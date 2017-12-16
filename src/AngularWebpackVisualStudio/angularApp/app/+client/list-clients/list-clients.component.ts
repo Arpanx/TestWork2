@@ -59,8 +59,10 @@ export class ListClientsComponent implements AfterViewInit {
 
     onSelectedCity(evt: MatOptionSelectionChange, city: any) {
         if (evt.source.selected) {
-            if (isNaN(city)) {
+            if (city === 'none') {
                 this.applyFilter('');
+
+                return;
             }
             this.applyFilter(city);
         }

@@ -10,7 +10,6 @@ import { catchError } from 'rxjs/operators/catchError';
 import { map } from 'rxjs/operators/map';
 import { startWith } from 'rxjs/operators/startWith';
 import { switchMap } from 'rxjs/operators/switchMap';
-import { MatOptionSelectionChange } from '@angular/material';
 import { MessageService } from '../services/index';
 import { TaskClient } from '../../models/taskclient';
 
@@ -107,16 +106,6 @@ export class ListClientTasksComponent implements AfterViewInit {
         this.isAllSelected() ?
             this.selection.clear() :
             this.dataSource.data.forEach(row => this.selection.select(row));
-    }
-
-    onSelectedCity(evt: MatOptionSelectionChange, city: any) {
-        if (evt.source.selected) {
-            console.log(city);
-            if (isNaN(city)) {
-                this.applyFilter('');
-            }
-            this.applyFilter(city);
-        }
     }
 
     applyFilter(filterValue: string) {
