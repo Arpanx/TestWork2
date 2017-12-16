@@ -22,7 +22,7 @@ import { MessageService } from '../services/index';
 
 export class ListClientTasksComponent implements AfterViewInit {
     displayedColumns = [/* 'select',  'clientid', */ 'taskName', 'description', 'startTime', 'endTime', 'address'];
-    exampleDatabase: ExampleHttpDao | null;
+    exampleDatabase: ClientsHttpDao | null;
     dataSource = new MatTableDataSource<TaskClients>();
     resultsLength = 0;
     isLoadingResults = false;
@@ -127,7 +127,7 @@ export class ListClientTasksComponent implements AfterViewInit {
     }
 
     ngAfterViewInit() {
-        this.exampleDatabase = new ExampleHttpDao(this.http);
+        this.exampleDatabase = new ClientsHttpDao(this.http);
         // If the user changes the sort order, reset back to the first page.
         this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
         merge(this.sort.sortChange, this.paginator.page, this.userUpdated)
@@ -135,7 +135,7 @@ export class ListClientTasksComponent implements AfterViewInit {
             startWith({}),
             switchMap(() => {
                 this.isLoadingResults = true;
-                return this.exampleDatabase!.getRepoIssues(
+                return this.exampleDatabase!.getClients(
                     this.sort.active, this.sort.direction, this.paginator.pageIndex, this.idClient);
             }),
             map(data => {
@@ -173,16 +173,17 @@ export interface TaskClients {
 }
 
 /** An example database that the data source uses to retrieve data for the table. */
-export class ExampleHttpDao {
+export class ClientsHttpDao {
     constructor(private http: HttpClient) { }
 
-    getRepoIssues(sort: string, order: string, page: number, idClient: number): Observable<AionysApi> {
+    getClients(sort: string, order: string, page: number, idClient: number): Observable<AionysApi> {
         const href = 'http://localhost:5000/api/taskclient';
         let requestUrl =
             `${href}?q=repo:angular/material2&sort=${sort}&order=${order}&page=${page + 1}`;
         requestUrl =
             `${href}/${idClient}`;
         const getTaskClient = this.http.get<AionysApi>(requestUrl);
+
         return getTaskClient;
     }
 }

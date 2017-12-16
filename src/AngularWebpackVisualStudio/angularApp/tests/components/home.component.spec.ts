@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 
 import { Configuration } from '../../app/app.constants';
-import { ThingService } from '../../app/core/services/thing-data.service';
+// import { ThingService } from '../../app/core/services/thing-data.service';
 import { HomeComponent } from '../../app/+home/home.component';
 
 describe('HomeComponent', () => {
@@ -18,7 +18,7 @@ describe('HomeComponent', () => {
                 HttpClientTestingModule
             ],
             providers: [
-                ThingService,
+                // ThingService,
                 Configuration
             ],
             declarations: [HomeComponent]

@@ -11,7 +11,6 @@ import { MatButtonModule, MatSidenavModule, MatCheckboxModule,
     MatGridListModule, // MatIconRegistry,
     MatTableModule,
     MatSelectModule} from '@angular/material';
-
 import { MatFormFieldModule } from '@angular/material';
 import { MatInputModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -20,9 +19,8 @@ import { ListClientsComponent } from './list-clients/list-clients.component';
 import { MessageService } from './services/index';
 import { ListClientTasksComponent } from './list-client-tasks/list-client-tasks.component';
 import { ContextmenuComponent } from './contextmenu/contextmenu.component';
-// import { TaskClientService } from './services/taskClient.service';
 import { FlexLayoutModule } from '@angular/flex-layout';
-// import { DomSanitizer } from '@angular/platform-browser';
+
 
 
 
@@ -75,9 +73,4 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 })
 
 export class HomeModule {
-  //  constructor(matIconRegistry: MatIconRegistry, domSanitizer: DomSanitizer) {
-  //      matIconRegistry.addSvgIconSet(
-  //        domSanitizer.bypassSecurityTrustResourceUrl('./assets/mdi.svg')
-  //      );
-  //  }
 }
