@@ -4,11 +4,11 @@ import { FormsModule } from '@angular/forms';
 
 import { Configuration } from '../../app/app.constants';
 import { ThingService } from '../../app/core/services/thing-data.service';
-import { clientComponent } from '../../app/+client/client.component';
+import { ClientComponent } from '../../app/+client/client.component';
 
 describe('clientComponent', () => {
 
-    let fixture: ComponentFixture<clientComponent>;
+    let fixture: ComponentFixture<ClientComponent>;
     // let comp: client1Component;
 
     beforeEach(async () => {
@@ -21,12 +21,12 @@ describe('clientComponent', () => {
                 ThingService,
                 Configuration
             ],
-            declarations: [clientComponent]
+            declarations: [ClientComponent]
         }).compileComponents();
     });
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(clientComponent);
+        fixture = TestBed.createComponent(ClientComponent);
        // comp = fixture.componentInstance;
     });
 

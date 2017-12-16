@@ -59,7 +59,7 @@ namespace Angular2WebpackVisualStudio
             loggerFactory.AddDebug();
 
             var angularRoutes = new[] {
-                 "/home",
+                 "/client",
                  "/about"
              };
 

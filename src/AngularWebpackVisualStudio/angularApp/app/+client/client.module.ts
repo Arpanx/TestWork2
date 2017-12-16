@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { clientComponent } from './client.component';
-import { clientRoutes } from './client.routes';
+import { ClientComponent } from './client.component';
+import { ClientRoutes } from './client.routes';
 import { MatButtonModule, MatSidenavModule, MatCheckboxModule,
          MatSortModule, MatAutocompleteModule, MatMenuModule, MatPaginatorModule,
          MatProgressSpinnerModule, MatToolbarModule, MatDialogModule, MatIconModule,
@@ -25,7 +25,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
         CommonModule,
         FormsModule,
         HttpClientModule,
-        clientRoutes,
+        ClientRoutes,
         FormsModule,
         HttpClientModule,
         MatButtonModule,
@@ -52,7 +52,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     ],
 
     declarations: [
-        clientComponent,
+        ClientComponent,
         ListClientsComponent,
         ListClientTasksComponent,
         ContextmenuComponent
@@ -67,5 +67,5 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     ]
 })
 
-export class clientModule {
+export class ClientModule {
 }
