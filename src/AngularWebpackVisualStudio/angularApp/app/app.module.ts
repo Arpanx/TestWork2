@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { AppRoutes } from './app.routes';
 import { CoreModule } from './core/core.module';
-import { HomeModule } from './+home/home.module';
+import { clientModule } from './+client/client.module';
 import { SharedModule } from './shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -16,7 +16,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
         AppRoutes,
         SharedModule,
         CoreModule.forRoot(),
-        HomeModule
+        clientModule
     ],
 
     declarations: [

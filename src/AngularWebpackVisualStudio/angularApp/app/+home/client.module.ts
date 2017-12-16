@@ -3,14 +3,13 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HomeComponent } from './home.component';
-import { HomeRoutes } from './home.routes';
+import { clientComponent } from './client.component';
+import { clientRoutes } from './client.routes';
 import { MatButtonModule, MatSidenavModule, MatCheckboxModule,
-    MatSortModule, MatAutocompleteModule, MatMenuModule, MatPaginatorModule,
-    MatProgressSpinnerModule, MatToolbarModule, MatDialogModule, MatIconModule,
-    MatGridListModule, // MatIconRegistry,
-    MatTableModule,
-    MatSelectModule} from '@angular/material';
+         MatSortModule, MatAutocompleteModule, MatMenuModule, MatPaginatorModule,
+         MatProgressSpinnerModule, MatToolbarModule, MatDialogModule, MatIconModule,
+         MatGridListModule, // MatIconRegistry,
+         MatTableModule, MatSelectModule} from '@angular/material';
 import { MatFormFieldModule } from '@angular/material';
 import { MatInputModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -21,15 +20,12 @@ import { ListClientTasksComponent } from './list-client-tasks/list-client-tasks.
 import { ContextmenuComponent } from './contextmenu/contextmenu.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
-
-
-
 @NgModule({
     imports: [
         CommonModule,
         FormsModule,
         HttpClientModule,
-        HomeRoutes,
+        clientRoutes,
         FormsModule,
         HttpClientModule,
         MatButtonModule,
@@ -56,14 +52,13 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     ],
 
     declarations: [
-        HomeComponent,
+        clientComponent,
         ListClientsComponent,
         ListClientTasksComponent,
         ContextmenuComponent
     ],
     providers: [
         MessageService,
-        // TaskClientService,
         TaskClientService,
       ],
     exports: [
@@ -72,5 +67,5 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     ]
 })
 
-export class HomeModule {
+export class clientModule {
 }

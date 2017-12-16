@@ -3,13 +3,13 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 
 import { Configuration } from '../../app/app.constants';
-// import { ThingService } from '../../app/core/services/thing-data.service';
-import { HomeComponent } from '../../app/+home/home.component';
+import { ThingService } from '../../app/core/services/thing-data.service';
+import { clientComponent } from '../../app/+client/client.component';
 
-describe('HomeComponent', () => {
+describe('clientComponent', () => {
 
-    let fixture: ComponentFixture<HomeComponent>;
-    // let comp: Home1Component;
+    let fixture: ComponentFixture<clientComponent>;
+    // let comp: client1Component;
 
     beforeEach(async () => {
         TestBed.configureTestingModule({
@@ -18,15 +18,15 @@ describe('HomeComponent', () => {
                 HttpClientTestingModule
             ],
             providers: [
-                // ThingService,
+                ThingService,
                 Configuration
             ],
-            declarations: [HomeComponent]
+            declarations: [clientComponent]
         }).compileComponents();
     });
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(HomeComponent);
+        fixture = TestBed.createComponent(clientComponent);
        // comp = fixture.componentInstance;
     });
 
