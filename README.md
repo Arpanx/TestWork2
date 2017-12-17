@@ -36,3 +36,7 @@ see http://localhost:5000/
 2) TestWork2\src\AngularWebpackVisualStudio\ MyDb.db  <- delete this file for seed new data
 When you start the program, create a new instance of the database
 
+P.S.
+
+Already implemented version of this program with authentication through Google account and work on the HTTPS protocol.
+I do not post it yet, because you will need to generate and connect a certificate.
