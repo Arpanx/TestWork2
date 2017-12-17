@@ -25,6 +25,8 @@ npm run build-dev
 
 dotnet restore
 
+dotnet build
+
 dotnet run
 
 see http://localhost:5000/
