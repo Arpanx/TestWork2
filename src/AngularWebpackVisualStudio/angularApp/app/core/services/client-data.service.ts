@@ -24,8 +24,6 @@ export class ClientService {
     }
 
     getClientAll(sort: string, order: string, page: number): Observable<AionysApi> {
-        console.log(sort);
-        console.log(order);
         return this.http.get<AionysApi>(this.actionUrl + `${page + 1}`, { headers: this.headers });
     }
 

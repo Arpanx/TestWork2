@@ -82,7 +82,10 @@ export class ListClientsComponent implements AfterViewInit {
             .pipe(
             startWith({}),
             switchMap(() => {
-                this.isLoadingResults = true;
+                setTimeout(() => {
+                    this.isLoadingResults = true;
+                });
+
                 return this.clientService!.getClientAll(
                     this.sort.active, this.sort.direction, this.paginator.pageIndex);
             }),
@@ -98,7 +101,10 @@ export class ListClientsComponent implements AfterViewInit {
             catchError(() => {
                 this.isLoadingResults = false;
                 // Catch if the Server API has reached its rate limit. Return empty data.
-                this.isRateLimitReached = true;
+                setTimeout(() => {
+                    this.isRateLimitReached = true;
+                });
+
                 return observableOf([]);
             })
             ).subscribe(data => this.dataSource.data = data);

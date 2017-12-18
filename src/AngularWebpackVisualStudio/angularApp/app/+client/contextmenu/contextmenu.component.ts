@@ -31,8 +31,7 @@ export class ContextmenuComponent implements OnInit, OnDestroy {
         });
     }
 
-    sendEventToParentForHideMenu(event: any) { // event
-        console.log(event);
+    sendEventToParentForHideMenu() { // event
         this.change.emit(1);
     }
 

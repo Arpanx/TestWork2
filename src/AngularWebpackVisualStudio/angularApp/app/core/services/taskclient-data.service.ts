@@ -24,7 +24,6 @@ export class TaskClientService {
 
 
     getBySortByOrderByPageByIdClient(sort: string, order: string, page: number, idClient: number): Observable<AionysApi> {
-        console.log (sort); console.log (order); console.log (page);
             return this.http.get<AionysApi>(this.actionUrl + `${idClient}`, { headers: this.headers });
     }
 

@@ -76,11 +76,9 @@ export class ListClientTasksComponent implements AfterViewInit {
         }
       }
 
-    deleteTaskById(event: any) { // event: any
-        console.log(event);
+    deleteTaskById() { // event: any
         this.taskClientService.delete(this.rowCurrent).subscribe(
             res => {
-              console.log(res);
               this.userUpdated.emit(0);
             },
             err => {
@@ -89,8 +87,7 @@ export class ListClientTasksComponent implements AfterViewInit {
           );
       }
 
-      ChangeNeedHideContextMenu(event: any) { // event: any
-        console.log(event);
+      ChangeNeedHideContextMenu() { // event: any
         this.contextmenu = false;
       }
 
@@ -121,7 +118,10 @@ export class ListClientTasksComponent implements AfterViewInit {
             .pipe(
             startWith({}),
             switchMap(() => {
-                this.isLoadingResults = true;
+                setTimeout(() => {
+                    this.isLoadingResults = true;
+                });
+
                 return this.taskClientService!.getBySortByOrderByPageByIdClient(
                     this.sort.active, this.sort.direction, this.paginator.pageIndex, this.idClient);
             }),
@@ -136,7 +136,9 @@ export class ListClientTasksComponent implements AfterViewInit {
             catchError(() => {
                 this.isLoadingResults = false;
                 // Catch if the Server API has reached its rate limit. Return empty data.
-                this.isRateLimitReached = true;
+                setTimeout(() => {
+                    this.isRateLimitReached = true;
+                });
 
                 return observableOf([]);
             })
